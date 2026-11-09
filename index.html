@@ -2,9 +2,243 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Document</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing — ProvenanceOps</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <!-- Inline SVG icon sprite (hand-written, referenced with <use>) -->
+  <svg class="visually-hidden" aria-hidden="true">
+    <symbol id="i-cube" viewBox="0 0 24 24">
+      <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 1.75 20.88 6.88v10.24L12 22.25l-8.88-5.13V6.88Z"/>
+        <path d="M12 7l4.33 2.5v5L12 17l-4.33-2.5v-5Z"/>
+        <path d="M7.67 9.5 12 12l4.33-2.5M12 12v5"/>
+      </g>
+    </symbol>
+    <symbol id="i-network" viewBox="0 0 24 24">
+      <g fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M12 9.4V5.3M14.47 11.2l3.9-1.27M13.53 14.1l2.41 3.32M10.47 14.1l-2.41 3.32M9.53 11.2l-3.9-1.27"/>
+        <circle cx="12" cy="12" r="2.6"/>
+        <circle cx="12" cy="3.5" r="1.8"/>
+        <circle cx="20.1" cy="9.4" r="1.8"/>
+        <circle cx="17" cy="18.9" r="1.8"/>
+        <circle cx="7" cy="18.9" r="1.8"/>
+        <circle cx="3.9" cy="9.4" r="1.8"/>
+      </g>
+    </symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24">
+      <path d="M12 2 4 5.2v6.1c0 4.9 3.4 9.3 8 10.7 4.6-1.4 8-5.8 8-10.7V5.2Z" fill="currentColor"/>
+    </symbol>
+    <symbol id="i-check-circle" viewBox="0 0 24 24">
+      <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10.5"/>
+        <path d="m8 12.2 2.7 2.7L16 9.6"/>
+      </g>
+    </symbol>
+    <symbol id="i-badge-check" viewBox="0 0 24 24">
+      <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/>
+        <path d="m9 12 2 2 4-4"/>
+      </g>
+    </symbol>
+    <symbol id="i-terminal" viewBox="0 0 24 24">
+      <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2.5" y="4" width="19" height="16" rx="2.5"/>
+        <path d="m7 9.5 2.5 2.5L7 14.5M12.5 15H17"/>
+      </g>
+    </symbol>
+    <symbol id="i-bolt" viewBox="0 0 24 24">
+      <path d="M13.5 2 4.5 13.5H11L10 22l9.5-12H13Z" fill="currentColor"/>
+    </symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24">
+      <path d="M4.5 12h15M13.5 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-user" viewBox="0 0 24 24">
+      <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="8" r="4"/>
+        <path d="M4.5 20.5c0-4.1 3.4-7 7.5-7s7.5 2.9 7.5 7"/>
+      </g>
+    </symbol>
+    <symbol id="i-flame" viewBox="0 0 24 24">
+      <path d="M12 2.5c.6 3.4 5.8 5.7 5.8 11.3a5.8 5.8 0 0 1-11.6 0c0-2.4 1.1-4.1 2.4-5.4.2 1.7 1 2.9 2.2 3.4-.6-3.4.2-6.6 1.2-9.3Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-gauge" viewBox="0 0 24 24">
+      <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+        <path d="M4.3 18a9.5 9.5 0 1 1 15.4 0"/>
+        <path d="m12 13 4.2-4.5"/>
+        <circle cx="12" cy="13" r="1.6"/>
+      </g>
+    </symbol>
+    <symbol id="i-shield-check" viewBox="0 0 24 24">
+      <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2.5 4.5 5.5v5.8c0 4.6 3.2 8.6 7.5 10.2 4.3-1.6 7.5-5.6 7.5-10.2V5.5Z"/>
+        <path d="m8.8 12 2.2 2.2 4.3-4.4"/>
+      </g>
+    </symbol>
+  </svg>
+
+  <header class="site-header container">
+    <a class="brand" href="#">
+      <span class="brand-mark">
+        <svg aria-hidden="true"><use href="#i-cube"/></svg>
+      </span>
+      ProvenanceOps
+    </a>
+
+    <nav class="site-nav" aria-label="Main">
+      <ul class="nav-links">
+        <li><a href="#">Platform</a></li>
+        <li><a href="#">Ledger Nodes</a></li>
+        <li><a href="#">Telemetry</a></li>
+        <li><a href="#">Integrations</a></li>
+        <li><a href="#" aria-current="page">Pricing</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <a class="btn btn-dark btn-header btn-demo" href="#">Book Demo</a>
+      <a class="btn btn-cyan btn-header btn-launch" href="#">Launch Console</a>
+      <button class="btn btn-cyan btn-icon" type="button" aria-label="Account">
+        <svg aria-hidden="true"><use href="#i-user"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Hero -->
+    <section class="hero">
+      <p class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        TRANSPARENT LEDGER INFRASTRUCTURE
+      </p>
+      <h1>Predictable, On-Chain Pricing for<br> Global Supply Chains</h1>
+      <p class="hero-subtitle">Immutable custody verification, automated smart contract escrow, and real-time IoT provenance tracking scaled deterministically to your shipping volume.</p>
+
+      <fieldset class="billing-toggle">
+        <legend class="visually-hidden">Billing period</legend>
+        <input class="visually-hidden" type="radio" name="billing" id="billing-monthly" value="monthly">
+        <label for="billing-monthly">Monthly</label>
+        <input class="visually-hidden" type="radio" name="billing" id="billing-annual" value="annual" checked>
+        <label for="billing-annual">
+          Annual
+          <span class="save-badge">SAVE 20% + 2 FREE ORACLES</span>
+        </label>
+      </fieldset>
+    </section>
+
+    <!-- Pricing cards -->
+    <section class="pricing" aria-label="Pricing plans">
+      <article class="card" aria-labelledby="plan-starter">
+        <div class="card-head">
+          <p class="eyebrow">PILOT TIER</p>
+          <svg class="card-icon" aria-hidden="true"><use href="#i-network"/></svg>
+        </div>
+        <h2 class="card-title" id="plan-starter">Node Starter</h2>
+        <p class="card-desc">Designed for single-corridor provenance pilots and supplier verification testing.</p>
+        <p class="price">
+          <span class="price-amount">$490</span>
+          <span class="price-suffix">/ mo (billed annually)</span>
+        </p>
+        <ul class="features">
+          <li><svg class="feature-icon" aria-hidden="true"><use href="#i-check-circle"/></svg><span>Up to <strong>5,000</strong> Verified Shipments/mo</span></li>
+          <li><svg class="feature-icon" aria-hidden="true"><use href="#i-check-circle"/></svg><span><strong>2 Validator Node</strong> instances (Proof-of-Authority)</span></li>
+          <li><svg class="feature-icon" aria-hidden="true"><use href="#i-check-circle"/></svg><span>10 IoT Sensor Telemetry Integrations</span></li>
+          <li><svg class="feature-icon" aria-hidden="true"><use href="#i-check-circle"/></svg><span>REST API &amp; Webhooks Engine</span></li>
+          <li><svg class="feature-icon" aria-hidden="true"><use href="#i-check-circle"/></svg><span>Cryptographic Hashes (SHA-256 Merkle)</span></li>
+          <li><svg class="feature-icon" aria-hidden="true"><use href="#i-check-circle"/></svg><span>99.8% Core Uptime SLA</span></li>
+        </ul>
+        <a class="btn btn-dark btn-block" href="#">
+          Deploy Starter Node
+          <svg aria-hidden="true"><use href="#i-terminal"/></svg>
+        </a>
+      </article>
+
+      <article class="card card--featured" aria-labelledby="plan-pro">
+        <div class="card-head">
+          <p class="card-badge">RECOMMENDED FOR ENTERPRISE</p>
+          <svg class="card-icon tone-cyan" aria-hidden="true"><use href="#i-cube"/></svg>
+        </div>
+        <h2 class="card-title" id="plan-pro">Consortium Pro</h2>
+        <p class="card-desc">Full multi-stakeholder consensus for mid-market distributors and cold-chain fleets.</p>
+        <p class="price">
+          <span class="price-amount tone-cyan">$1,850</span>
+          <span class="price-suffix">/ mo (billed annually)</span>
+        </p>
+        <ul class="features">
+          <li><svg class="feature-icon" aria-hidden="true"><use href="#i-badge-check"/></svg><span>Up to <strong class="tone-cyan">75,000</strong> Verified Shipments/mo</span></li>
+          <li><svg class="feature-icon" aria-hidden="true"><use href="#i-badge-check"/></svg><span><strong>6 Distributed PBFT</strong> Consensus Nodes</span></li>
+          <li><svg class="feature-icon" aria-hidden="true"><use href="#i-badge-check"/></svg><span>Automated Smart Contract Escrow execution</span></li>
+          <li><svg class="feature-icon" aria-hidden="true"><use href="#i-badge-check"/></svg><span>Real-time GPS &amp; Temp RFID Chainlink Oracles</span></li>
+          <li><svg class="feature-icon" aria-hidden="true"><use href="#i-badge-check"/></svg><span>Custom ERP Connectors (SAP / Oracle / NetSuite)</span></li>
+          <li><svg class="feature-icon" aria-hidden="true"><use href="#i-badge-check"/></svg><span>Zero-Knowledge Proofs (zk-SNARKs) vendor privacy</span></li>
+          <li><svg class="feature-icon" aria-hidden="true"><use href="#i-badge-check"/></svg><span>99.95% High-Availability SLA + 24/7 Ops Support</span></li>
+        </ul>
+        <a class="btn btn-cyan btn-block" href="#">
+          Start 14-Day Pilot
+          <svg aria-hidden="true"><use href="#i-bolt"/></svg>
+        </a>
+      </article>
+
+      <article class="card" aria-labelledby="plan-enterprise">
+        <div class="card-head">
+          <p class="eyebrow tone-lavender">SOVEREIGN SUBNET</p>
+          <svg class="card-icon tone-lavender" aria-hidden="true"><use href="#i-shield"/></svg>
+        </div>
+        <h2 class="card-title" id="plan-enterprise">Global Enterprise</h2>
+        <p class="card-desc">Dedicated private consortium subnet with sovereign node governance and smart contract audits.</p>
+        <p class="price">
+          <span class="price-amount">$5,500</span>
+          <span class="price-suffix">/ mo (starting price)</span>
+        </p>
+        <ul class="features features--lavender">
+          <li><svg class="feature-icon" aria-hidden="true"><use href="#i-check-circle"/></svg><span><strong>Unlimited</strong> Shipments &amp; Telemetry Events</span></li>
+          <li><svg class="feature-icon" aria-hidden="true"><use href="#i-check-circle"/></svg><span>Dedicated Sovereign Subnet Architecture</span></li>
+          <li><svg class="feature-icon" aria-hidden="true"><use href="#i-check-circle"/></svg><span>Zero-Gas Fee Subsidized Relayer Fabric</span></li>
+          <li><svg class="feature-icon" aria-hidden="true"><use href="#i-check-circle"/></svg><span>FIPS 140-2 Level 3 HSM Key Management</span></li>
+          <li><svg class="feature-icon" aria-hidden="true"><use href="#i-check-circle"/></svg><span>Regulatory Compliance: FDA FSMA 204 &amp; EU DPP</span></li>
+          <li><svg class="feature-icon" aria-hidden="true"><use href="#i-check-circle"/></svg><span>Dedicated Blockchain Architect &amp; 99.99% SLA</span></li>
+        </ul>
+        <a class="btn btn-dark btn-block" href="#">
+          Contact Architecture Team
+          <svg aria-hidden="true"><use href="#i-arrow"/></svg>
+        </a>
+      </article>
+    </section>
+
+    <!-- Stats bar -->
+    <section class="stats" aria-label="Platform statistics">
+      <div class="stat">
+        <div class="stat-icon tone-cyan">
+          <svg aria-hidden="true"><use href="#i-flame"/></svg>
+        </div>
+        <div>
+          <p class="stat-value tone-cyan">94%</p>
+          <p class="stat-label">Average Gas Overhead Reduction via Rollups</p>
+        </div>
+      </div>
+      <div class="stat">
+        <div class="stat-icon tone-teal">
+          <svg aria-hidden="true"><use href="#i-gauge"/></svg>
+        </div>
+        <div>
+          <p class="stat-value tone-teal">&lt;120ms</p>
+          <p class="stat-label">Consensus Finality Across Global Regions</p>
+        </div>
+      </div>
+      <div class="stat">
+        <div class="stat-icon tone-lavender">
+          <svg aria-hidden="true"><use href="#i-shield-check"/></svg>
+        </div>
+        <div>
+          <p class="stat-value tone-lavender">100%</p>
+          <p class="stat-label">Formally Audited Smart Escrow Templates</p>
+        </div>
+      </div>
+    </section>
+  </main>
 </body>
 </html>
